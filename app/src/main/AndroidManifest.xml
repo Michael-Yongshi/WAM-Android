@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yongshi42.wam_android">
+<manifest package="com.yongshi42.wam_android"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Add permission to use nfc and register that it is mandatory in the play store -->
-    <uses-permission android:name="android.permission.NFC" />
-    <uses-feature android:name="android.hardware.nfc" />
+    <uses-permission
+        android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
