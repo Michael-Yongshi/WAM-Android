@@ -12,11 +12,10 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.yongshi42.wam_android.api_stuff.APIKindaStuff
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import kotlinx.android.synthetic.main.activity_scan.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
          * receive accountjson from previous activity and store in a viewmodel
          */
         var accountjson: JsonObject = Gson().fromJson(intent.getStringExtra("accountjson"), JsonObject::class.java)
-        mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.accountjson.value = accountjson
         Log.d("ethnfc debug", "Mainactivity retrieves accountjson in mainviewmodel ${mainViewModel} as ${mainViewModel.accountjson.value.toString()}")
 

@@ -21,7 +21,7 @@ class DuelFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mainViewModel =
-            ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_duel, container, false)
         val textView: TextView = root.findViewById(R.id.text_duel)
         mainViewModel.text.observe(viewLifecycleOwner, Observer {

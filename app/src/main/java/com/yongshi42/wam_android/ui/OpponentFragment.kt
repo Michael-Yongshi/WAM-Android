@@ -44,7 +44,7 @@ class OpponentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mainViewModel =
-            ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_opponent, container, false)
 
         val idView: EditText = root.findViewById(R.id.id)

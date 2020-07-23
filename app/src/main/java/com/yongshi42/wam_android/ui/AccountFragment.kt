@@ -31,7 +31,7 @@ class AccountFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mainViewModel =
-            ViewModelProviders.of(requireActivity()).get(MainViewModel::class.java)
+            ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         val root = inflater.inflate(R.layout.fragment_account, container, false)
 
