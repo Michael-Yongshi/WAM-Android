@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ETHNFC-Android</string>
+    <string name="app_name">WAM-Android</string>
     <string name="NFC_request">Hold a tag against the back of your device</string>
     <string name="pintext">Please enter a pin</string>
     <string name="confirm">Confirm</string>
