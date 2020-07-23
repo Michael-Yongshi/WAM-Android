@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_challenger">
+
+    <fragment
+        android:id="@+id/nav_account"
+        android:name="com.yongshi42.wam_android.ui.AccountFragment"
+        android:label="Account"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/nav_challenger"
+        android:name="com.yongshi42.wam_android.ui.ChallengerFragment"
+        android:label="Challenger"
+        tools:layout="@layout/fragment_challenger" />
+
+    <fragment
+        android:id="@+id/nav_opponent"
+        android:name="com.yongshi42.wam_android.ui.OpponentFragment"
+        android:label="Opponent"
+        tools:layout="@layout/fragment_opponent" />
+
+    <fragment
+        android:id="@+id/nav_history"
+        android:name="com.yongshi42.wam_android.ui.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/nav_duel"
+        android:name="com.yongshi42.wam_android.ui.DuelFragment"
+        android:label="Duel"
+        tools:layout="@layout/fragment_duel" />
+
+</navigation>
