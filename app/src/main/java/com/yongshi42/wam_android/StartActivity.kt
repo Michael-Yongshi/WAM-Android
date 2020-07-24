@@ -1,17 +1,23 @@
 package com.yongshi42.wam_android
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.gson.JsonObject
-import com.yongshi42.wam_android.helpers.FileHelper
+import com.yongshi42.wam_android.helpers.ExternalFileHelper
+import com.yongshi42.wam_android.helpers.JsonHelper
+import com.yongshi42.wam_android.helpers.PrivateFileHelper
 import com.yongshi42.wam_android.start.StartViewModel
 import kotlinx.android.synthetic.main.activity_start.*
 
@@ -20,6 +26,9 @@ class StartActivity : AppCompatActivity() {
 
     private lateinit var startViewModel: StartViewModel
     private lateinit var adapter: ArrayAdapter<String>
+
+    val requestcodeexport: Int = 20
+    val requestcodeimport: Int = 10
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,16 +44,16 @@ class StartActivity : AppCompatActivity() {
          * Set the listview widget and link to view model list files
          */
         var listview: ListView = findViewById(R.id.list_files)
-        startViewModel.filenames.observe(this, Observer { filenames ->
+        startViewModel.privatefilenames.observe(this, Observer { filenames ->
             adapter = ArrayAdapter<String>(this, R.layout.activity_start_listitem, filenames)
             listview.adapter = adapter
             Log.d("ethnfc debug", "account fragment gets accountjson found in mainviewmodel ")
         })
 
         /**
-         * retrieve file list in viewmodel
+         * retrieve private file list in viewmodel
          */
-        updateListView()
+        updatePrivateFileList()
 
         /**
          * Set listener on listview to load when name is selected
@@ -61,8 +70,9 @@ class StartActivity : AppCompatActivity() {
             /**
              * Load warband to warbandjson
              */
-            startViewModel.warbandjson.value = FileHelper().readJSONfromFile(filename, this)!!
-            Log.d("WAM_Android", "Loaded $filename as json ${startViewModel.warbandjson.value}")
+            val string: String = PrivateFileHelper().readFromFile(filename, this)!!
+            startViewModel.warbandjson.value = JsonHelper().convertfromJsonStringtoJsonObject(string)
+                Log.d("WAM_Android", "Loaded $filename as json ${startViewModel.warbandjson.value}")
         }
 
         /**
@@ -100,26 +110,67 @@ class StartActivity : AppCompatActivity() {
             Log.d("WAM_Android", "Created warbandjson as ${startViewModel.warbandjson.value}")
 
             /**
-             * Create savefile for new warband
+             * Create savefile for new warband, converting the json to string
              */
             val filename = "$warbandname.json"
-            FileHelper().writeJSONtoFile(filename = filename, json = startViewModel.warbandjson.value!!, context = this)
+            val string: String = JsonHelper().convertfromJsonObjecttoJsonString(startViewModel.warbandjson.value!!)
+            PrivateFileHelper().writeToFile(filename = filename, string = string, context = this)
             Log.d("WAM_Android", "Saved warbandjson to file with filename $filename")
 
-            updateListView()
+            updatePrivateFileList()
         }
 
         btnimport.setOnClickListener() {
-
+            ExternalFileHelper().readFromFile(this, requestcodeimport, "application/json")
         }
+
+        btnexport.setOnClickListener() {
+            val filename: String = startViewModel.warbandjson.value?.get("Warband")?.asString + ".json"
+            ExternalFileHelper().writeToFile(this, requestcodeexport, "application/json", filename)
+        }
+
     }
 
-    private fun updateListView() {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        var currentUri: Uri? = null
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == requestcodeimport) {
+                Log.d("onActivityResult import", "Retrieved uri ${data?.data.toString()}")
+
+                /**
+                 * Read data from Uri
+                 */
+
+            }
+            if (requestCode == requestcodeexport) {
+                Log.d("onActivityResult export", "Retrieved uri ${data?.data.toString()}")
+
+                /**
+                 * write data to Uri
+                 */
+
+            }
+        }
+
+    }
+
+    private fun updatePrivateFileList() {
         /**
          * Get list of all files in app directory again
          */
-        startViewModel.filenames.value = FileHelper().getFilenameList(this)
-        Log.d("Filenames", "Filenames received: $startViewModel.filenames.value")
+        startViewModel.privatefilenames.value = PrivateFileHelper().getFilenameList(this)
+        Log.d("Filenames", "Filenames received: ${startViewModel.privatefilenames.value}")
+    }
+
+    private fun updateExternalFileList() {
+        /**
+         * Get list of all files in app directory again
+         */
+        startViewModel.externalfilenames.value = ExternalFileHelper().getFilenameList(this, "json")
+        Log.d("Filenames", "Filenames received: ${startViewModel.externalfilenames.value}")
     }
 
     private fun showWirelessSettings() {

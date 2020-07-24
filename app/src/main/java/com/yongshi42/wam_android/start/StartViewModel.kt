@@ -11,7 +11,11 @@ class StartViewModel : ViewModel() {
         MutableLiveData<JsonObject>()
     }
 
-    val filenames: MutableLiveData<MutableList<String>> by lazy{
+    val privatefilenames: MutableLiveData<MutableList<String>> by lazy{
+        MutableLiveData<MutableList<String>>()
+    }
+
+    val externalfilenames: MutableLiveData<MutableList<String>> by lazy{
         MutableLiveData<MutableList<String>>()
     }
 }

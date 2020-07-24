@@ -5,30 +5,30 @@ import android.util.Log
 import com.google.gson.JsonObject
 import java.io.*
 
-class FileHelper {
+class PrivateFileHelper {
 
     fun writeJSONtoFile(filename: String, json: JsonObject, context: Context) {
-        Log.d("FileHelper", "Started writeJSONtoFile with filename $filename and json $json")
+        Log.d("PrivateFileHelper", "Started writeJSONtoFile with filename $filename and json $json")
 
         val string: String = JsonHelper().convertfromJsonObjecttoJsonString(json)
         writeToFile(filename, string, context)
 
-        Log.d("FileHelper", "Finished writeJSONtoFile")
+        Log.d("PrivateFileHelper", "Finished writeJSONtoFile")
     }
 
     fun readJSONfromFile(filename: String, context: Context): JsonObject? {
-        Log.d("FileHelper", "Started readJSONfromFile with filename $filename")
+        Log.d("PrivateFileHelper", "Started readJSONfromFile with filename $filename")
 
         val string: String? = readFromFile(filename, context)
         val json: JsonObject? = string?.let { JsonHelper().convertfromJsonStringtoJsonObject(it) }
 
-        Log.d("FileHelper", "Finished readJSONfromFile and returning json $json")
+        Log.d("PrivateFileHelper", "Finished readJSONfromFile and returning json $json")
         return json
 
     }
 
     fun writeToFile(filename: String, string: String, context: Context) {
-        Log.d("FileHelper", "Started writetoFile with filename $filename and string $string")
+        Log.d("PrivateFileHelper", "Started writetoFile with filename $filename and string $string")
 
         try {
             val outputStreamWriter = OutputStreamWriter(context.openFileOutput(filename, Context.MODE_PRIVATE));
@@ -39,11 +39,11 @@ class FileHelper {
             Log.e("Exception", "File write failed: $e")
         }
 
-        Log.d("FileHelper", "Finished writetoFile")
+        Log.d("PrivateFileHelper", "Finished writetoFile")
     }
 
     fun readFromFile(filename: String, context: Context): String? {
-        Log.d("FileHelper", "Started readfromFile with filename $filename")
+        Log.d("PrivateFileHelper", "Started readfromFile with filename $filename")
 
         var readString = ""
         try {
@@ -65,12 +65,12 @@ class FileHelper {
             Log.e("login activity", "Can not read file: $e")
         }
 
-        Log.d("FileHelper", "Finished readfromFile and returning string $readString")
+        Log.d("PrivateFileHelper", "Finished readfromFile and returning string $readString")
         return readString
     }
 
     fun getFilenameList(context: Context): MutableList<String> {
-        Log.d("FileHelper", "Started getFilenameList")
+        Log.d("PrivateFileHelper", "Started getFilenameList")
 
         val files: Array<File>? = getFileList(context)
         val filenames: MutableList<String> = ArrayList()
@@ -80,12 +80,12 @@ class FileHelper {
                 filenames.add(file.name)
         }
 
-        Log.d("FileHelper", "Finished getFilenameList with filenames $filenames")
+        Log.d("PrivateFileHelper", "Finished getFilenameList with filenames $filenames")
         return filenames
     }
 
     fun getFileList(context: Context): Array<File>? {
-        Log.d("FileHelper", "Started getFileList")
+        Log.d("PrivateFileHelper", "Started getFileList")
 
         /**
          * Android 10 way of getting to the external storage
@@ -108,7 +108,7 @@ class FileHelper {
          * Return the list of files
          */
 
-        Log.d("FileHelper", "Finished getFileList with files $files")
+        Log.d("PrivateFileHelper", "Finished getFileList with files $files")
         return files
     }
 

@@ -2,13 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.yongshi42.wam_android">
-    <!-- Add permission to use nfc -->
+
+    <!-- Add permissions -->
     <uses-permission android:name="android.permission.INTERNET" /> <!-- register that internet is used by this app, which is kinda default -->
     <uses-permission android:name="android.permission.CAMERA" /> <!-- register that camera can be used by this app, is optional (simple entry of opponent ID also suffices -->
     <uses-permission android:name="android.permission.NFC" /> <!-- register that nfc is used AND mandatory in the play store -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- register that reading external storage is used AND mandatory in the play store -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- register that reading external storage is used AND mandatory in the play store -->
+
     <uses-feature
         android:name="android.hardware.nfc"
-        android:required="true" />
+        android:required="false" />
 
     <application
         android:allowBackup="false"

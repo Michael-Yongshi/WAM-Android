@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.yongshi42.wam_android.R
-import com.yongshi42.wam_android.helpers.FileHelper
+import com.yongshi42.wam_android.helpers.PrivateFileHelper
 
 class LoadFragment : Fragment() {
 
@@ -28,7 +28,7 @@ class LoadFragment : Fragment() {
         /**
          * Get list of all files in app directory
          */
-        val filenames: MutableList<String>? = activity?.let { FileHelper().getFilenameList(it) }
+        val filenames: MutableList<String>? = activity?.let { PrivateFileHelper().getFilenameList(it) }
         Log.d("Filenames", "Filenames received: $filenames")
 
         /**

@@ -48,10 +48,18 @@
         android:layout_height="wrap_content"
         android:text="Import"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnexport"
         app:layout_constraintStart_toEndOf="@id/btnnew"
         app:layout_constraintTop_toBottomOf="@id/list_files" />
 
-
+    <Button
+        android:id="@+id/btnexport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Export"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnimport"
+        app:layout_constraintTop_toBottomOf="@id/list_files" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
