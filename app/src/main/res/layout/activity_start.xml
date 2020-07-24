@@ -6,31 +6,52 @@
     android:layout_height="match_parent"
     tools:context=".StartActivity">
 
-    <Button
-        android:id="@+id/btnnew"
+    <EditText
+        android:id="@+id/nameinput"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="310dp"
-        android:layout_marginEnd="159dp"
-        android:layout_marginBottom="28dp"
-        android:text="New"
-        app:layout_constraintBottom_toTopOf="@+id/btnload"
+        android:autofillHints=""
+        android:hint="Warband"
+        android:inputType="text"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/list_files"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="165dp"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="158dp"
-        android:layout_marginBottom="297dp"
-        android:text="Load"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ListView
+        android:id="@+id/list_files"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toTopOf="@id/btnnew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnnew" />
+        app:layout_constraintTop_toBottomOf="@id/nameinput"
+        />
+
+    <Button
+        android:id="@+id/btnnew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create New"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnimport"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/list_files" />
+
+    <Button
+        android:id="@+id/btnimport"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Import"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btnnew"
+        app:layout_constraintTop_toBottomOf="@id/list_files" />
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

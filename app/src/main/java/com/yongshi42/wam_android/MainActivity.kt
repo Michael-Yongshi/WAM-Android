@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         /**
          * receive accountjson from previous activity and store in a viewmodel
          */
-        var accountjson: JsonObject = Gson().fromJson(intent.getStringExtra("accountjson"), JsonObject::class.java)
+        val accountjson: JsonObject = Gson().fromJson(intent.getStringExtra("accountjson"), JsonObject::class.java)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         mainViewModel.accountjson.value = accountjson
         Log.d("ethnfc debug", "Mainactivity retrieves accountjson in mainviewmodel ${mainViewModel} as ${mainViewModel.accountjson.value.toString()}")

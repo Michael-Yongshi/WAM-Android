@@ -11,30 +11,34 @@ class MainViewModel : ViewModel() {
     val warbandjson: MutableLiveData<JsonObject> by lazy{
         MutableLiveData<JsonObject>()
     }
-//
-//    val charactersjson: MutableLiveData<JsonObject> by lazy{
-//        MutableLiveData<JsonObject>()
-//    }
-//
-//    val challengerjson: MutableLiveData<JsonObject> by lazy{
-//        MutableLiveData<JsonObject>()
-//    }
-//
-//    val opponentjson: MutableLiveData<JsonObject> by lazy{
-//        MutableLiveData<JsonObject>()
-//    }
-//
-//    val historyjson: MutableLiveData<JsonObject> by lazy{
-//        MutableLiveData<JsonObject>()
-//    }
-//
-//    val activeduel: MutableLiveData<JsonObject> by lazy{
-//        MutableLiveData<JsonObject>()
-//    }
-//
-//    private val _text = MutableLiveData<String>().apply {
-//        value = "This is a data point in the main view model"
-//    }
-//    val text: LiveData<String> = _text
+
+    val accountjson: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    val charactersjson: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    val challengerjson: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    val opponentjson: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    val historyjson: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    val activeduel: MutableLiveData<JsonObject> by lazy{
+        MutableLiveData<JsonObject>()
+    }
+
+    private val _text = MutableLiveData<String>().apply {
+        value = "This is a data point in the main view model"
+    }
+    val text: LiveData<String> = _text
 
 }
